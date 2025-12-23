@@ -9,35 +9,30 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-  color: white;
-  text-align: center;
+  background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+  color: #fff;
 }
 
 .container {
-  max-width: 400px;
-  margin: 60px auto;
-  background: rgba(0,0,0,0.4);
+  max-width: 420px;
+  margin: 50px auto;
+  background: rgba(0,0,0,0.45);
   padding: 25px;
   border-radius: 12px;
+  text-align: center;
 }
 
-h1 {
-  margin-bottom: 5px;
-}
-
-p {
-  opacity: 0.9;
-}
+h1 { margin-bottom: 5px; }
+p { opacity: 0.9; }
 
 input[type="file"] {
   width: 100%;
   margin: 10px 0;
   padding: 8px;
   background: #111;
-  color: white;
-  border: none;
+  color: #fff;
   border-radius: 6px;
+  border: none;
 }
 
 button {
@@ -46,25 +41,42 @@ button {
   background: #00c6ff;
   border: none;
   border-radius: 8px;
-  color: black;
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
 }
 
-button:hover {
-  background: #00a3d9;
-}
+button:hover { background:#00a3d9; }
 
-#status {
+.progress {
+  width: 100%;
+  height: 12px;
+  background: #333;
+  border-radius: 10px;
+  overflow: hidden;
+  display: none;
   margin-top: 15px;
-  font-size: 14px;
 }
 
-.demo {
-  margin-top: 20px;
-  font-size: 13px;
-  opacity: 0.8;
+.bar {
+  height: 100%;
+  width: 0%;
+  background: #00ff99;
+}
+
+#status { margin-top: 12px; font-size: 14px; }
+
+video {
+  width: 100%;
+  border-radius: 10px;
+  margin-top: 15px;
+  display: none;
+}
+
+.note {
+  font-size: 12px;
+  margin-top: 15px;
+  opacity: 0.75;
 }
 </style>
 </head>
@@ -80,122 +92,44 @@ button:hover {
 
   <button onclick="startDemo()">Start Face Swap</button>
 
+  <div class="progress" id="progressBox">
+    <div class="bar" id="bar"></div>
+  </div>
+
   <div id="status"></div>
 
-  <div class="demo">
-    ⚠ Demo version — Backend coming soon  
+  <video id="demoVideo" controls>
+    <source src="https://sample-videos.com/video321/mp4/720/big_buck_bunny_720p_1mb.mp4" type="video/mp4">
+  </video>
+
+  <div class="note">
+    ⚠ Demo UI only — backend & AI processing coming soon
   </div>
 </div>
 
 <script>
 function startDemo() {
+  const bar = document.getElementById("bar");
+  const box = document.getElementById("progressBox");
   const status = document.getElementById("status");
+  const video = document.getElementById("demoVideo");
+
+  box.style.display = "block";
+  video.style.display = "none";
+  bar.style.width = "0%";
   status.innerHTML = "⏳ Processing video...";
 
-  setTimeout(() => {
-    status.innerHTML = "✅ Face swap completed (demo result)";
-  }, 3000);
-}
-</script>
+  let progress = 0;
+  let interval = setInterval(() => {
+    progress += 10;
+    bar.style.width = progress + "%";
 
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>DeepFaceLab Web</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-  color: white;
-  text-align: center;
-}
-
-.container {
-  max-width: 400px;
-  margin: 60px auto;
-  background: rgba(0,0,0,0.4);
-  padding: 25px;
-  border-radius: 12px;
-}
-
-h1 {
-  margin-bottom: 5px;
-}
-
-p {
-  opacity: 0.9;
-}
-
-input[type="file"] {
-  width: 100%;
-  margin: 10px 0;
-  padding: 8px;
-  background: #111;
-  color: white;
-  border: none;
-  border-radius: 6px;
-}
-
-button {
-  width: 100%;
-  padding: 12px;
-  background: #00c6ff;
-  border: none;
-  border-radius: 8px;
-  color: black;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-button:hover {
-  background: #00a3d9;
-}
-
-#status {
-  margin-top: 15px;
-  font-size: 14px;
-}
-
-.demo {
-  margin-top: 20px;
-  font-size: 13px;
-  opacity: 0.8;
-}
-</style>
-</head>
-
-<body>
-
-<div class="container">
-  <h1>DeepFaceLab Web</h1>
-  <p>AI Face Swapping Platform</p>
-
-  <input type="file" accept="video/*">
-  <input type="file" accept="image/*">
-
-  <button onclick="startDemo()">Start Face Swap</button>
-
-  <div id="status"></div>
-
-  <div class="demo">
-    ⚠ Demo version — Backend coming soon  
-  </div>
-</div>
-
-<script>
-function startDemo() {
-  const status = document.getElementById("status");
-  status.innerHTML = "⏳ Processing video...";
-
-  setTimeout(() => {
-    status.innerHTML = "✅ Face swap completed (demo result)";
-  }, 3000);
+    if (progress >= 100) {
+      clearInterval(interval);
+      status.innerHTML = "✅ Face swap completed (demo)";
+      video.style.display = "block";
+    }
+  }, 300);
 }
 </script>
 
