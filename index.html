@@ -1,12 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>DeepFaceLab Web</title>
+<meta charset="UTF-8">
+<title>DeepFaceLab Web</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: white;
+  text-align: center;
+}
+
+.container {
+  max-width: 400px;
+  margin: 60px auto;
+  background: rgba(0,0,0,0.4);
+  padding: 25px;
+  border-radius: 12px;
+}
+
+h1 {
+  margin-bottom: 5px;
+}
+
+p {
+  opacity: 0.9;
+}
+
+input[type="file"] {
+  width: 100%;
+  margin: 10px 0;
+  padding: 8px;
+  background: #111;
+  color: white;
+  border: none;
+  border-radius: 6px;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background: #00c6ff;
+  border: none;
+  border-radius: 8px;
+  color: black;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #00a3d9;
+}
+
+#status {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.demo {
+  margin-top: 20px;
+  font-size: 13px;
+  opacity: 0.8;
+}
+</style>
 </head>
-<body style="font-family:Arial; text-align:center;">
+
+<body>
+
+<div class="container">
   <h1>DeepFaceLab Web</h1>
   <p>AI Face Swapping Platform</p>
-  <p>Resume Ready Project</p>
+
+  <input type="file" accept="video/*">
+  <input type="file" accept="image/*">
+
+  <button onclick="startDemo()">Start Face Swap</button>
+
+  <div id="status"></div>
+
+  <div class="demo">
+    ⚠ Demo version — Backend coming soon  
+  </div>
+</div>
+
+<script>
+function startDemo() {
+  const status = document.getElementById("status");
+  status.innerHTML = "⏳ Processing video...";
+
+  setTimeout(() => {
+    status.innerHTML = "✅ Face swap completed (demo result)";
+  }, 3000);
+}
+</script>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>DeepFaceLab Web</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: white;
+  text-align: center;
+}
+
+.container {
+  max-width: 400px;
+  margin: 60px auto;
+  background: rgba(0,0,0,0.4);
+  padding: 25px;
+  border-radius: 12px;
+}
+
+h1 {
+  margin-bottom: 5px;
+}
+
+p {
+  opacity: 0.9;
+}
+
+input[type="file"] {
+  width: 100%;
+  margin: 10px 0;
+  padding: 8px;
+  background: #111;
+  color: white;
+  border: none;
+  border-radius: 6px;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background: #00c6ff;
+  border: none;
+  border-radius: 8px;
+  color: black;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #00a3d9;
+}
+
+#status {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.demo {
+  margin-top: 20px;
+  font-size: 13px;
+  opacity: 0.8;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>DeepFaceLab Web</h1>
+  <p>AI Face Swapping Platform</p>
+
+  <input type="file" accept="video/*">
+  <input type="file" accept="image/*">
+
+  <button onclick="startDemo()">Start Face Swap</button>
+
+  <div id="status"></div>
+
+  <div class="demo">
+    ⚠ Demo version — Backend coming soon  
+  </div>
+</div>
+
+<script>
+function startDemo() {
+  const status = document.getElementById("status");
+  status.innerHTML = "⏳ Processing video...";
+
+  setTimeout(() => {
+    status.innerHTML = "✅ Face swap completed (demo result)";
+  }, 3000);
+}
+</script>
+
 </body>
 </html>
